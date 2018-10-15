@@ -26,10 +26,28 @@ while lineString:
 
     # Set code to run only if the line contains the string "Date: "
     if ("Date :" in lineString):
+        
+        # Split the line string into a list
         lineData = lineString.split()
-        print(lineData[0])
-        break
+
+        # Extract attributes from the first (datum header) line
+        tagID = lineData[0]
+
+        # Get the next line
+        line2String = inputFileObj.readline()
+        line2Data = line2String.split()
+        
+
+        # Get attributes from second line
+        obsLat = line2Data[2]
+        obsLong = line2Data[5]
+
+        # Print results to see how we're doing
+        print(tagID, obsLat, obsLong)
 
     
     # Get the next line
     lineString = inputFileObj.readline()
+
+# Close the file object
+inputFileObj.close()
